@@ -50,3 +50,15 @@ Designed for AWS Free Tier. Current monthly cost: **$0.00**
 ## Author
 
 Senior .NET/Azure developer transitioning to AWS Cloud Engineering. 5 years experience with .NET, Azure, Kubernetes.
+
+---
+
+## Live Deployment Evidence
+
+### API Health Response (ALB → ECS Fargate → .NET 8)
+![API Health Response](docs/screenshots/api-health-response.png)
+
+### ALB Target Group — 1 Healthy Target (ECS Task)
+![ALB Target Healthy](docs/screenshots/alb-target-healthy.png)
+
+

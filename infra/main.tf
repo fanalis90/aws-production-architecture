@@ -105,3 +105,21 @@ output "ecr_repository_url" {
   value = module.ecr.repository_url
 }
 
+module "compute" {
+  source = "./modules/compute"
+
+  project                = var.project
+  vpc_id                 = module.vpc.vpc_id
+  public_subnet_ids      = module.vpc.public_subnet_ids
+  private_subnet_ids     = module.vpc.private_subnet_ids
+  alb_sg_id              = module.security.alb_sg_id
+  ecs_sg_id              = module.security.ecs_sg_id
+  ecs_execution_role_arn = module.iam.ecs_execution_role_arn
+  ecs_task_role_arn      = module.iam.ecs_task_role_arn
+  ecr_repository_url     = module.ecr.repository_url
+}
+
+output "alb_dns_name" {
+  value = module.compute.alb_dns_name
+}
+
