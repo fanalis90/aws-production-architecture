@@ -11,6 +11,10 @@ override.tf.json
 .terraform.lock.hcl
 .terraformrc
 
+# .NET build artifacts
+bin/
+obj/
+
 # Secrets - NEVER commit
 *.pem
 *.key
