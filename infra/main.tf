@@ -47,6 +47,11 @@ variable "environment" {
   default = "production"
 }
 
+variable "db_password" {
+  type      = string
+  sensitive = true
+}
+
 module "vpc" {
   source = "./modules/vpc"
 
@@ -103,6 +108,21 @@ output "ecs_sg_id" {
 
 output "ecr_repository_url" {
   value = module.ecr.repository_url
+}
+
+module "database" {
+  source = "./modules/database"
+
+  project            = var.project
+  vpc_id             = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_subnet_ids
+  ecs_sg_id          = module.security.ecs_sg_id
+  db_password        = var.db_password
+}
+
+output "db_endpoint" {
+  value     = module.database.db_endpoint
+  sensitive = true
 }
 
 module "compute" {
