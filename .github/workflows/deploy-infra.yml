@@ -18,6 +18,7 @@ jobs:
   terraform:
     name: Terraform ${{ github.event_name == 'pull_request' && 'Plan' || 'Apply' }}
     runs-on: ubuntu-latest
+    environment: AWS
     defaults:
       run:
         working-directory: infra
@@ -54,3 +55,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -var="db_password=${{ secrets.DB_PASSWORD }}" -auto-approve -no-color
+
